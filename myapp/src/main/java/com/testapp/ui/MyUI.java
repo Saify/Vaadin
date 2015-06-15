@@ -1,4 +1,4 @@
-package com.testapp;
+package com.testapp.ui;
 
 import javax.servlet.annotation.WebServlet;
 
