@@ -26,7 +26,6 @@ import com.vaadin.ui.themes.ValoTheme;
 public class MyUI extends UI {
 
 	Button addNew = new Button("Add");
-	Button edit = new Button("Edit");
 	Button delete = new Button("Delete");
 	Grid productsGrid = new Grid();
 	ProductForm productForm = new ProductForm();
@@ -37,8 +36,7 @@ public class MyUI extends UI {
 	protected void init(VaadinRequest vaadinRequest) {
 
 		HorizontalLayout productLayout = new HorizontalLayout();
-		HorizontalLayout buttonsLayout = new HorizontalLayout(addNew, edit,
-				delete);
+		HorizontalLayout buttonsLayout = new HorizontalLayout(addNew, delete);
 		buttonsLayout.setSpacing(true);
 
 		VerticalLayout left = new VerticalLayout(buttonsLayout, productsGrid);
@@ -53,7 +51,6 @@ public class MyUI extends UI {
 
 	private void configureComponents() {
 		addNew.setStyleName(ValoTheme.BUTTON_PRIMARY);
-		edit.setEnabled(false);
 		delete.setEnabled(false);
 		delete.setStyleName(ValoTheme.BUTTON_DANGER);
 		productForm.setEnabled(false);
@@ -61,33 +58,41 @@ public class MyUI extends UI {
 		productsGrid.setContainerDataSource(new BeanItemContainer<>(
 				Product.class));
 		productsGrid.setSelectionMode(SelectionMode.SINGLE);
-		productsGrid
-				.addSelectionListener(e -> toggleEditDeleteItem(getSelectedProdcut()));
+		productsGrid.addSelectionListener(e -> toggleEditDeleteItem());
 		delete.addClickListener(e -> deleteProduct(getSelectedProdcut()));
+		addNew.addClickListener(e -> addProduct());
 		refreshProductsList();
 	}
 
-	private void toggleEditDeleteItem(Product selectedProduct) {
-		if (selectedProduct != null) {
-			edit.setEnabled(true);
+	public void cancelSelectedProduct() {
+		productsGrid.select(null);
+		toggleEditDeleteItem();
+	}
+
+	private void toggleEditDeleteItem() {
+		if (getSelectedProdcut() != null) {
 			delete.setEnabled(true);
 		} else {
-			edit.setEnabled(false);
 			delete.setEnabled(false);
 		}
+		productForm.edit(getSelectedProdcut());
 	}
 
 	private void deleteProduct(Product selectedProduct) {
 		pService.delete(selectedProduct);
 		refreshProductsList();
-		toggleEditDeleteItem(getSelectedProdcut());
+		toggleEditDeleteItem();
+	}
+	
+	private void addProduct(){
+		productForm.edit(new Product());
 	}
 
 	private Product getSelectedProdcut() {
 		return (Product) productsGrid.getSelectedRow();
 	}
 
-	private void refreshProductsList() {
+	public void refreshProductsList() {
 		productsGrid.setContainerDataSource(new BeanItemContainer<>(
 				Product.class, pService.findProducts()));
 	}
