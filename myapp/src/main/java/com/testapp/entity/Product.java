@@ -1,15 +1,20 @@
 package com.testapp.entity;
 
-public class Product {
+import java.io.Serializable;
 
-	private long id;
+import org.apache.commons.beanutils.BeanUtils;
+
+
+public class Product implements Serializable, Cloneable {
+
+	private Long id;
 	private String name;
 
-	public long getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(long id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
@@ -19,5 +24,14 @@ public class Product {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	@Override
+	public Product clone() throws CloneNotSupportedException {
+		try {
+			return (Product) BeanUtils.cloneBean(this);
+		} catch (Exception ex) {
+			throw new CloneNotSupportedException();
+		}
 	}
 }
