@@ -1,8 +1,10 @@
 package com.testapp.ui;
 
 import com.testapp.entity.Product;
+import com.vaadin.data.Validator;
 import com.vaadin.data.fieldgroup.BeanFieldGroup;
 import com.vaadin.data.fieldgroup.FieldGroup.CommitException;
+import com.vaadin.event.FieldEvents.TextChangeListener;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.Button.ClickEvent;
 import com.vaadin.ui.Button.ClickListener;
@@ -40,12 +42,12 @@ public class ProductForm extends FormLayout {
 		HorizontalLayout buttonsLayout = new HorizontalLayout(save, cancel);
 		buttonsLayout.setSpacing(true);
 		addComponents(name, buttonsLayout);
-
 		cancel.addClickListener(new Button.ClickListener() {
 
 			@Override
 			public void buttonClick(ClickEvent event) {
 				disableProductForm();
+				getMainUI().productsGrid.select(null);
 			}
 		});
 
@@ -80,12 +82,21 @@ public class ProductForm extends FormLayout {
 	}
 
 	public void edit(Product product) {
-		if (product  != null) {
+		if (product != null) {
 			setProduct(product);
 			formFieldBindings = BeanFieldGroup
 					.bindFieldsBuffered(product, this);
 		}
 		setEnabled(product != null);
+	}
+
+	private void toggleSaveButton() {
+		if (getProduct() != null && getProduct().getName() != null
+				&& getProduct().getName() != "") {
+			save.setEnabled(true);
+		} else {
+			save.setEnabled(false);
+		}
 	}
 
 	private MyUI getMainUI() {

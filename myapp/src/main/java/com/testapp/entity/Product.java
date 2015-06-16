@@ -8,7 +8,7 @@ import org.apache.commons.beanutils.BeanUtils;
 public class Product implements Serializable, Cloneable {
 
 	private Long id;
-	private String name;
+	private String name = "";
 
 	public Long getId() {
 		return id;

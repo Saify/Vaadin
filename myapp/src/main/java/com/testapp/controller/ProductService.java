@@ -11,10 +11,7 @@ import com.testapp.entity.Product;
 public class ProductService {
 
 	// Create dummy data by randomly combining first and last names
-	static String[] pNames = { "Peter", "Alice", "John", "Mike", "Olivia",
-			"Nina", "Alex", "Rita", "Dan", "Umberto", "Henrik", "Rene", "Lisa",
-			"Linda", "Timothy", "Daniel", "Brian", "George", "Scott",
-			"Jennifer" };
+	static String[] pNames = { "MacBook Pro", "Logitech G27", "M&M", "LG G3","Nissan GTR" };
 
 	private static ProductService instance;
 	private static long nextId = 0;
@@ -23,7 +20,7 @@ public class ProductService {
 	public static ProductService ProductService() {
 		if (instance == null) {
 			final ProductService pService = new ProductService();
-			for (int i = 0; i < 10; i++) {
+			for (int i = 0; i < pNames.length; i++) {
 				// Add default Products
 				Product product = new Product();
 				product.setName(pNames[i]);
