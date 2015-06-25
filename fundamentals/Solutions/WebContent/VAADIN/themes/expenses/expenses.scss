@@ -1,0 +1,22 @@
+/* Import the reindeer theme.*/
+/* This only allows us to use the mixins defined in it and does not add any styles by itself. */
+@import "../reindeer/reindeer.scss";
+
+/* This contains all of your theme.*/
+/* If somebody wants to extend the theme she will include this mixin. */
+
+$red: #ff0000;
+
+@mixin expenses {
+  /* Include all the styles from the reindeer theme */
+  @include reindeer;
+	
+	.warning-label {
+		color: $red;
+		background-color: #ffff00;
+	}
+	
+	.v-table-cell-content-red .v-table-cell-wrapper{
+		color: $red;
+	}
+}

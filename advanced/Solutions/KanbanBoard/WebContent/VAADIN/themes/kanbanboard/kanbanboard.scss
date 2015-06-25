@@ -1,0 +1,25 @@
+/* Import the reindeer theme.*/
+/* This only allows us to use the mixins defined in it and does not add any styles by itself. */
+@import "../reindeer/reindeer.scss";
+
+/* This contains all of your theme.*/
+/* If somebody wants to extend the theme she will include this mixin. */
+@mixin kanbanboard {
+  /* Include all the styles from the reindeer theme */
+  @include reindeer;
+
+  /* Insert your theme rules here */
+  /*
+  .v-panel .v-csslayout {
+  	padding: 10px;
+  }
+  */
+  .task {
+  	width: 100%;
+  	height: 70px;
+  	/*  	margin-bottom: 10px;  	*/
+  	padding: 10px;  	
+  	background-color: #eeeeee;
+  	border: solid 1px #c0c0c0;
+  }
+}

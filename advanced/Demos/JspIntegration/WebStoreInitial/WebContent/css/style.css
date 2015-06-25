@@ -1,0 +1,26 @@
+/* body { */
+/* 	margin: 0; */
+/* 	height: 100%; */
+/* } */
+
+.menu {
+	box-sizing: border-box;
+	padding-left: 15px;
+	padding-top: 15px;
+	width: 200px;
+	height: 100%;
+	float: left;
+	background: #EEEEEE;
+}
+
+.content {
+	float: left;
+	padding-left:30px;
+	padding-top:15px;
+	height: 100%;
+}
+
+#VaadinShoppingCart,
+#VaadinShoppingCart .v-ui {
+	height: auto;
+}
