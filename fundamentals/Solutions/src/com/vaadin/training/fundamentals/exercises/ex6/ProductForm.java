@@ -37,6 +37,7 @@ public class ProductForm extends CustomComponent implements View {
 		VerticalLayout formLayout = new VerticalLayout();
 		formLayout.setMargin(true);
 		formLayout.setSizeFull();
+		
 		final FieldGroup binder = new FieldGroup(item);
 
 		ProductFormLayout productEditLayout = new ProductFormLayout();
