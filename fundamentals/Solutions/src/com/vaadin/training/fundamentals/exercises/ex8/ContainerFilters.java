@@ -76,7 +76,6 @@ public class ContainerFilters extends CustomComponent implements View {
 		private final Filter wrappedFilter;
 
 		public DateRangeFilter(Date startDate, Date endDate) {
-
 			if (startDate == null && endDate == null) {
 				wrappedFilter = new Compare.GreaterOrEqual("available",
 						new Date(0L));
