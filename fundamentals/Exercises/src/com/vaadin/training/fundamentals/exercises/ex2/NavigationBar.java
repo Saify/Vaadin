@@ -26,10 +26,10 @@ public class NavigationBar extends CustomComponent implements View {
 	}
 
 	private Layout createNavigationLayout() {
-		Button left1 = new Button("Left1");
-		Button left2 = new Button("Left2");
-		Button left3 = new Button("Left3");
-		Button right1 = new Button("Right1");
+		Button left1 = new Button("Compose");
+		Button left2 = new Button("Get Mail");
+		Button left3 = new Button("Home");
+		Button right1 = new Button("Logout");
 		HorizontalLayout navBar = new HorizontalLayout(left1, left2, left3,right1);
 		navBar.setComponentAlignment(left3, Alignment.MIDDLE_RIGHT);
 		navBar.setComponentAlignment(right1, Alignment.MIDDLE_RIGHT);
@@ -37,6 +37,7 @@ public class NavigationBar extends CustomComponent implements View {
 		navBar.setSpacing(true);
 		navBar.setExpandRatio(left3, 1	);
 		navBar.setExpandRatio(right1, 1);
+		navBar.setStyleName("header");
 		return navBar;
 	}
 

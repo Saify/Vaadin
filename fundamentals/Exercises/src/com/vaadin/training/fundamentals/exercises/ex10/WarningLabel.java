@@ -9,6 +9,7 @@ public class WarningLabel extends Label {
 	public WarningLabel(String text) {
 		super(text);
 		// TODO assign style name
+		setStyleName("alert-label");
 	}
 
 }

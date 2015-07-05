@@ -6,10 +6,12 @@ import com.vaadin.data.Property.ValueChangeEvent;
 import com.vaadin.data.Property.ValueChangeListener;
 import com.vaadin.server.VaadinRequest;
 import com.vaadin.ui.Table;
+import com.vaadin.ui.Table.CellStyleGenerator;
 import com.vaadin.ui.TextField;
 import com.vaadin.ui.UI;
 import com.vaadin.ui.VerticalLayout;
 
+@Theme("expenses")
 public class SassTheme extends UI {
 
 	private static final long serialVersionUID = 1L;
@@ -31,6 +33,23 @@ public class SassTheme extends UI {
 
 		table = new Table("Monthly expenses");
 		// TODO implement cell style generator
+		table.setCellStyleGenerator(new CellStyleGenerator() {
+			private static final long serialVersionUID = 1L;
+
+			@Override
+			public String getStyle(Table source, Object itemId, Object propertyId) {
+				if (!"expenses".equals(propertyId)) {
+					return null;
+				}
+
+				if ((Long) source.getItem(itemId).getItemProperty(propertyId)
+						.getValue() > getMonthlyExpenseLimit()) {
+					return "red-alert";
+				}
+
+				return null;
+			}
+		});
 
 		initalizeAndPopulateTable(table);
 		layout.addComponent(table);

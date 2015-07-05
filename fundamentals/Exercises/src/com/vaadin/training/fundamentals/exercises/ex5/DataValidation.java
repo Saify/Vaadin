@@ -23,7 +23,7 @@ public class DataValidation extends CustomComponent implements View {
 		setCompositionRoot(mainLayout);
 
 		TextField email = new TextField("Email");
-		EmailValidator ev = new EmailValidator("Incorrect email!");
+		EmailValidator ev = new EmailValidator("Please enter a correct email!");
 		email.addValidator(ev);
 		email.setImmediate(true);
 
@@ -50,7 +50,7 @@ public class DataValidation extends CustomComponent implements View {
 		customValidator.setImmediate(true);
 
 		Validator myValidator = new AbstractValidator<String>(
-				"{0} Value Not Accepted") {
+				"\"{0}\" Value Not Accepted") {
 
 			@Override
 			protected boolean isValidValue(String value) {
